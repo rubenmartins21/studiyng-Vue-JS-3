@@ -1,18 +1,41 @@
 const app = Vue.createApp({
   data() {
     return {
+      url: "https://google.com",
       showBooks: true,
-      title: "The final empire",
-      author: "Brandon Sandersen",
-      age: 45,
+      books: [
+        {
+          title: "the final empire",
+          author: "brandon sandersen",
+          img: "assets/1.jpg",
+          isFav: true,
+        },
+        {
+          title: "name of the wind",
+          author: "patrick rothfuss",
+          img: "assets/2.jpg",
+          isFav: false,
+        },
+        {
+          title: "the way of kings",
+          author: "patrick rothfuss",
+          img: "assets/3.jpg",
+          isFav: true,
+        },
+      ],
     };
   },
   methods: {
     toggleShowBooks() {
       this.showBooks = !this.showBooks;
     },
-    handleEvent() {
-      console.log("event");
+    toggleFavBook(book) {
+      book.isFav = !book.isFav;
+    },
+  },
+  computed: {
+    filteredBooks() {
+      return this.books.filter((book) => book.isFav);
     },
   },
 });
